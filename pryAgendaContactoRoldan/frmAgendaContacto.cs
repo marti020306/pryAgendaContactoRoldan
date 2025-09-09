@@ -13,6 +13,14 @@ namespace pryAgendaContactoRoldan
         int vCantContactos = 0;
         DateTime vFecha = DateTime.Now;
 
+        //Declarar vectores 
+        string[] vecTelofono = new string[5];
+        String[] vecContacto = new string[5];
+
+        //indice
+        int Indice = 0;
+
+
         private void txtcontacto_TextChanged(object sender, EventArgs e)
         {
             if (txtcontacto.TextLength > 0)
@@ -32,12 +40,17 @@ namespace pryAgendaContactoRoldan
 
         private void cmdRegistrar_Click(object sender, EventArgs e)
         {
-            vContacto = txtcontacto.Text;
-            vNumero = mtbNumero.Text;
-            lstbContacto.Items.Add("Contacto:" + " " + vContacto + " - " + "Numero:" + " " + vNumero);
+            vecContacto[Indice] = txtcontacto.Text;
+            vecTelofono[Indice] = mtbNumero.Text;
+      
+            lstbContacto.Items.Add("Contacto:" + " " + vecContacto[Indice] + " - " + "Numero:" + " " + vecTelofono[Indice]);
             vCantContactos = vCantContactos + 1;
             lblCantContactos.Text = "Cantidad de Contactos:" + " " + vCantContactos;
             lblFechaHora.Text = "Fecha y Hora:" + " " + vFecha;
+            txtcontacto.Focus();
+           
+            Indice++;
+            LimpiarControles();
         }
 
         private void mtbNumero_TextChanged(object sender, EventArgs e)
