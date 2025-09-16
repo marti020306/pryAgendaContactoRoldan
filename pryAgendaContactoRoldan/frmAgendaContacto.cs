@@ -74,6 +74,12 @@ namespace pryAgendaContactoRoldan
         {
 
         }
+
+        private void cmdAgenda_Click(object sender, EventArgs e)
+        {
+            frmContacto frmContacto = new frmContacto();
+            frmContacto.ShowDialog();
+        }
     }
 }
     
