@@ -33,6 +33,7 @@
             lblContacto = new Label();
             cmdAtras = new Button();
             cmdSiguiente = new Button();
+            cmdSalir = new Button();
             mrgContactos.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,7 +56,6 @@
             mrgContactos.TabIndex = 1;
             mrgContactos.TabStop = false;
             mrgContactos.Text = "Contactos";
-            mrgContactos.Enter += mrgContactos_Enter;
             // 
             // lblContacto
             // 
@@ -85,11 +85,22 @@
             cmdSiguiente.UseVisualStyleBackColor = true;
             cmdSiguiente.Click += cmdSiguiente_Click;
             // 
+            // cmdSalir
+            // 
+            cmdSalir.Location = new Point(154, 361);
+            cmdSalir.Name = "cmdSalir";
+            cmdSalir.Size = new Size(94, 29);
+            cmdSalir.TabIndex = 5;
+            cmdSalir.Text = "Salir";
+            cmdSalir.UseVisualStyleBackColor = true;
+            cmdSalir.Click += cmdVolver_Click_1;
+            // 
             // frmContacto
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(452, 450);
+            Controls.Add(cmdSalir);
             Controls.Add(cmdSiguiente);
             Controls.Add(cmdAtras);
             Controls.Add(mrgContactos);
@@ -110,5 +121,6 @@
         private Label lblContacto;
         private Button cmdAtras;
         private Button cmdSiguiente;
+        private Button cmdSalir;
     }
 }

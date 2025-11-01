@@ -81,8 +81,6 @@
             mtbNumero.Name = "mtbNumero";
             mtbNumero.Size = new Size(135, 27);
             mtbNumero.TabIndex = 3;
-            mtbNumero.MaskChanged += mtbNumero_MaskChanged;
-            mtbNumero.MaskInputRejected += mtbNumero_MaskInputRejected;
             mtbNumero.TextChanged += mtbNumero_TextChanged;
             // 
             // cmdCancelar
@@ -118,6 +116,7 @@
             txtcontacto.Size = new Size(135, 27);
             txtcontacto.TabIndex = 6;
             txtcontacto.TextChanged += txtcontacto_TextChanged;
+            txtcontacto.KeyPress += txtcontacto_KeyPress_1;
             // 
             // lstbContacto
             // 
@@ -129,7 +128,6 @@
             lstbContacto.Name = "lstbContacto";
             lstbContacto.Size = new Size(381, 124);
             lstbContacto.TabIndex = 7;
-            lstbContacto.SelectedIndexChanged += lstbContacto_SelectedIndexChanged;
             // 
             // lblCantContactos
             // 

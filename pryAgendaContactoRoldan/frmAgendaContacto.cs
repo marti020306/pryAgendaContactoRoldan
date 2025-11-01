@@ -6,56 +6,52 @@ namespace pryAgendaContactoRoldan
         {
             InitializeComponent();
         }
-        // Definir variables globales
 
+        public static class DatosCompartidos
+        {
+            public static string[] Nombres = new string[20];
+            public static string[] Numeros = new string[20];
+            public static int Cantidad = 0;
+        }
+
+       
         string vContacto = "";
         string vNumero = "";
         int vCantContactos = 0;
         DateTime vFecha = DateTime.Now;
-
         private void txtcontacto_TextChanged(object sender, EventArgs e)
         {
-            if (txtcontacto.TextLength > 0)
-            {
-                mtbNumero.Enabled = true;
-            }
-            else
-            {
-                mtbNumero.Enabled = false;
-            }
+            
+            mtbNumero.Enabled = txtcontacto.TextLength > 0;
         }
 
-        private void mtbNumero_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void mtbNumero_TextChanged(object sender, EventArgs e)
         {
-
+           
+            cmdRegistrar.Enabled = mtbNumero.MaskFull;
         }
 
         private void cmdRegistrar_Click(object sender, EventArgs e)
         {
             vContacto = txtcontacto.Text;
             vNumero = mtbNumero.Text;
-            lstbContacto.Items.Add("Contacto:" + " " + vContacto + " - " + "Numero:" + " " + vNumero);
-            vCantContactos = vCantContactos + 1;
-            lblCantContactos.Text = "Cantidad de Contactos:" + " " + vCantContactos;
-            lblFechaHora.Text = "Fecha y Hora:" + " " + vFecha;
-        }
 
-        private void mtbNumero_TextChanged(object sender, EventArgs e)
-        {
-            if (mtbNumero.MaskFull) //fijarse en la compu si anda con == True
+           
+            if (DatosCompartidos.Cantidad < DatosCompartidos.Nombres.Length)
             {
-                cmdRegistrar.Enabled = true;
+                DatosCompartidos.Nombres[DatosCompartidos.Cantidad] = vContacto;
+                DatosCompartidos.Numeros[DatosCompartidos.Cantidad] = vNumero;
+                DatosCompartidos.Cantidad++;
             }
 
-            else
-            {
-                cmdRegistrar.Enabled = false;
-            }
-        }
+            lstbContacto.Items.Add($"Contacto: {vContacto} - Número: {vNumero}");
 
-        private void mtbNumero_MaskChanged(object sender, EventArgs e)
-        {
+            
+            vCantContactos++;
+            lblCantContactos.Text = $"Cantidad de Contactos: {vCantContactos}";
+            lblFechaHora.Text = $"Fecha y Hora: {vFecha}";
 
+            LimpiarControles();
         }
 
         private void LimpiarControles()
@@ -70,16 +66,23 @@ namespace pryAgendaContactoRoldan
             LimpiarControles();
         }
 
-        private void lstbContacto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void cmdAgenda_Click(object sender, EventArgs e)
         {
+           
             frmContacto frmContacto = new frmContacto();
             frmContacto.ShowDialog();
         }
+
+        private void txtcontacto_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+           
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
     }
+
+
 }
     
